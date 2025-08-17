@@ -4,7 +4,7 @@ Frontend em Next.js consumindo a API de tarefas.
 ✅ **Produção (UI):** https://task-ui.onrender.com  
 ✅ **API:** https://task-api-nxz7.onrender.com
 
-[![Screenshot](./docs/screenshot-home.png)](https://task-ui.onrender.com)
+[![Screenshot](./docs/screenshot-home.PNG)](https://task-ui.onrender.com)
 
 ---
 
