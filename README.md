@@ -6,9 +6,6 @@ Frontend em Next.js consumindo a API de tarefas.
 
 [![Screenshot](./docs/screenshot-home.png)](https://task-ui.onrender.com)
 
-> Coloque uma imagem em `./docs/screenshot-home.png` (print da home).  
-> Dica no mac: `⌘⇧4` / Windows: `Win+Shift+S` e salve em `docs/`.
-
 ---
 
 ## 🧱 Stack
