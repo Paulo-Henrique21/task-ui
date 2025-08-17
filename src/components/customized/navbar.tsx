@@ -93,12 +93,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export default function Navbar({ children }: { children: React.ReactNode }) {
+export default function Navbar( { children }: { children: React.ReactNode } ) {
   const navigationLinks = [
-    { href: "#", label: "Home", active: true },
-    { href: "#", label: "Features" },
-    { href: "#", label: "Pricing" },
-    { href: "#", label: "About" },
+    { href: "#", label: "Home", active: true }
   ];
 
   return (
@@ -145,7 +142,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
               <PopoverContent align="start" className="w-36 p-1 md:hidden">
                 <NavigationMenu className="max-w-none *:w-full">
                   <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
-                    {navigationLinks.map((link, index) => (
+                    {navigationLinks.map( ( link, index ) => (
                       <NavigationMenuItem key={index} className="w-full">
                         <NavigationMenuLink
                           href={link.href}
@@ -155,7 +152,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
                           {link.label}
                         </NavigationMenuLink>
                       </NavigationMenuItem>
-                    ))}
+                    ) )}
                   </NavigationMenuList>
                 </NavigationMenu>
               </PopoverContent>
@@ -165,7 +162,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
               {/* Navigation menu */}
               <NavigationMenu className="max-md:hidden">
                 <NavigationMenuList className="gap-2">
-                  {navigationLinks.map((link, index) => (
+                  {navigationLinks.map( ( link, index ) => (
                     <NavigationMenuItem key={index}>
                       <NavigationMenuLink
                         active={link.active}
@@ -175,7 +172,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
                         {link.label}
                       </NavigationMenuLink>
                     </NavigationMenuItem>
-                  ))}
+                  ) )}
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
