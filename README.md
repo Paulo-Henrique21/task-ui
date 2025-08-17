@@ -1,45 +1,61 @@
-# UI Notas
+# Tasks UI · Next.js (SSR)
 
-Uma aplicação Next.js para renomear notas fiscais.
+Frontend em Next.js consumindo a API de tarefas.  
+✅ **Produção (UI):** https://task-ui.onrender.com  
+✅ **API:** https://task-api-nxz7.onrender.com
 
-## Pré-requisitos
+[![Screenshot](./docs/screenshot-home.png)](https://task-ui.onrender.com)
 
-- Node.js (versão LTS mais recente)
-- pnpm
+> Coloque uma imagem em `./docs/screenshot-home.png` (print da home).  
+> Dica no mac: `⌘⇧4` / Windows: `Win+Shift+S` e salve em `docs/`.
 
-## Instalação do pnpm
+---
 
-```bash
-npm install -g pnpm
+## 🧱 Stack
+- Next.js (standalone/SSR) · TypeScript
+- pnpm · Docker · Render
+
+## 🔐 Variáveis de ambiente
+Somente variáveis **NEXT_PUBLIC_*** são expostas no client.
+```env
+NEXT_PUBLIC_API_URL=https://task-api-nxz7.onrender.com
 ```
+Você pode versionar `.env.local` (liberando com `!.env.local` no `.gitignore`) **ou** definir essa env no Render.
 
-## Começando
-
-1. Clone o repositório
-2. Instale as dependências:
+## ▶️ Rodando localmente
 ```bash
 pnpm install
-```
-
-3. Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
-```bash
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
-
-4. Inicie o servidor de desenvolvimento:
-```bash
+# garanta um .env.local com NEXT_PUBLIC_API_URL
 pnpm dev
+# http://localhost:3000
 ```
 
-5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador
-
-## Desenvolvimento
-
-A aplicação irá recarregar automaticamente se você alterar qualquer arquivo fonte no diretório `app`.
-
-## Build
-
-Para construir a aplicação para produção:
+## 🐳 Docker
+_O projeto já vem com Dockerfile (build + standalone)._  
+Comandos típicos:
 ```bash
-pnpm build
+docker build -t tasks-ui .
+docker run --rm -p 3000:3000 tasks-ui
+# abre http://localhost:3000
 ```
+
+## ☁️ Deploy (Render)
+1. **Web Service** (Docker) → selecione o repositório do front.  
+2. **Health Check Path**: `/`.  
+3. **Environment**: (opcional) `NEXT_PUBLIC_API_URL` — se não versionar `.env.local`.  
+4. **Auto-Deploy** ligado para CI/CD.
+
+## 🔗 Integração com a API
+Use a URL da env em todas as chamadas:
+```ts
+const API = process.env.NEXT_PUBLIC_API_URL!;
+const res = await fetch(`${API}/tasks`, { cache: 'no-store' });
+```
+
+## 🛡️ CORS (no backend)
+No serviço da API (Render), defina:
+```env
+CORS_ORIGIN=https://task-ui.onrender.com,http://localhost:3000
+```
+
+---
