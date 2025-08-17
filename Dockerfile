@@ -46,19 +46,18 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# cria usuário não-root para segurança
-RUN adduser -S nextjs && chown -R nextjs:nextjs /app
+RUN addgroup -S nextjs && adduser -S -G nextjs nextjs
 
-# copia apenas o necessário para rodar
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 COPY --from=build /app/public ./public
+
+RUN chown -R nextjs:nextjs /app
 
 USER nextjs
 ENV PORT=3000
 EXPOSE 3000
 
-# Render injeta PORT — usamos host 0.0.0.0 para aceitar conexões externas
-# CMD ["sh","-c","node server.js -p $PORT -H 0.0.0.0"]
 CMD ["sh","-c","HOSTNAME=0.0.0.0 node server.js"]
+
 
