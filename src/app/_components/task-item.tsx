@@ -66,7 +66,7 @@ export function TaskItem({
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:8000/tasks/${task.id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${task.id}`, {
         method: "DELETE",
       });
       onTaskDeleted(task.id);
